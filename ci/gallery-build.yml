@@ -24,3 +24,12 @@ jobs:
         tags: |
           $(Build.BuildId)
           latest
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: sed -i -E 's/:latest\s/:$(Build.BuildId)/g' $(Build.Repository.LocalPath)/k8s/gallery-deployment.yml
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: $(Build.Repository.LocalPath)
+        artifactName: gallery-k8s
+      condition: always()
