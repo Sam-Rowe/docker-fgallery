@@ -1,6 +1,5 @@
 FROM ubuntu:bionic AS Builder
 
-
 EXPOSE 80
 
 # Force package install to be silent
