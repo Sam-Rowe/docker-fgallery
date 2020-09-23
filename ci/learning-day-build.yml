@@ -24,3 +24,8 @@ jobs:
         tags: |
           $(Build.BuildId)
           latest
+    - task: AzureWebAppContainer@1
+      inputs:
+        azureSubscription: 'sams-airs-subscription-learning-day'
+        appName: 'msftlearningdaygallery'
+        containers: 'msftuklearningdaygallerydemo.azurecr.io/gallery:$(Build.BuildId)'
