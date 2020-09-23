@@ -1,5 +1,6 @@
 {
     "extensions" : [
-        "ms-azuretools.vscode-docker"
+        "ms-azuretools.vscode-docker",
+        "ms-azure-devops.azure-pipelines"
     ]
 }
