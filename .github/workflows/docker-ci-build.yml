@@ -14,6 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag samuelroweuk/gallery:$(date +%s)
+      run: |
+        docker build . --file Dockerfile --tag ghcr.io/sam-rowe/docker-fgallery:$(date +%s) --tag ghcr.io/sam-rowe/docker-fgallery:latest
+        docker push --all-tags ghcr.io/sam-rowe/docker-fgallery
